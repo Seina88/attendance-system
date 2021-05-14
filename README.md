@@ -6,15 +6,22 @@
 
    ```sh
    git clone https://github.com/Seina88/attendance-system.git
+   cd attendance-system/
    ```
 
-2. パッケージのインストール
+2. 環境編集の設定
+
+   ```sh
+   cp .env.sample .env
+   ```
+
+3. パッケージのインストール
 
    ```sh
    make install
    ```
 
-3. API サーバの起動
+4. API サーバの起動
 
    ```sh
    make backend-start

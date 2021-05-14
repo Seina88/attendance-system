@@ -8,6 +8,7 @@ authors = ["Seina Tohyama <tiara818seina@gmail.com>"]
 python = "^3.9"
 Flask = "^2.0.0"
 autopep8 = "^1.5.7"
+python-dotenv = "^0.17.1"
 
 [tool.poetry.dev-dependencies]
 
