@@ -1,4 +1,4 @@
-install: backend-local-install
+install: backend-install
 
 backend-install:
 	cd backend/; \
