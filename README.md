@@ -9,7 +9,7 @@
    cd attendance-system/
    ```
 
-2. 環境編集の設定
+2. 環境変数の設定
 
    ```sh
    cp .env.sample .env
