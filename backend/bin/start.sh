@@ -1,3 +1,3 @@
 #!/bin/sh
 
-poetry run python ./src/main.py
+poetry run flask run
