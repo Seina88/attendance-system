@@ -6,6 +6,8 @@ authors = ["Seina Tohyama <tiara818seina@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+Flask = "^2.0.0"
+autopep8 = "^1.5.7"
 
 [tool.poetry.dev-dependencies]
 
