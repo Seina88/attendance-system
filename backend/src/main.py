@@ -4,7 +4,7 @@ from flask import Flask, make_response, jsonify
 app = Flask(__name__)
 
 
-@app.route("/", methods=["GET"])
+@app.route("/api/hello", methods=["GET"])
 def hello():
     response = {
         "message": "Hello, World!"
