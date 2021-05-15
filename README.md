@@ -26,3 +26,9 @@
    ```sh
    make backend-start
    ```
+
+5. Vue サーバの起動
+
+   ```sh
+   make frontend-start
+   ```
