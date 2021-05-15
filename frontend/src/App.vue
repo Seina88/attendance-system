@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <img src="./assets/logo.png" />
+    <h1>{{ message }}</h1>
   </div>
 </template>
 
@@ -10,14 +10,16 @@ import axios from 'axios'
 
 export default {
   name: 'App',
+  data: function () {
+    return {
+      message: '',
+    }
+  },
   mounted: function () {
-    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
-    axios
-      .get('http://localhost:5000/api/hello')
-      .then(response => {
-        console.log(response)
-      })
-  }
+    axios.get('http://localhost:5000/api/hello').then((response) => {
+      this.message = response.data.message
+    })
+  },
 }
 </script>
 
