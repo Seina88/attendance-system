@@ -6,8 +6,18 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'App'
+  name: 'App',
+  mounted: function () {
+    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
+    axios
+      .get('http://localhost:5000/api/hello')
+      .then(response => {
+        console.log(response)
+      })
+  }
 }
 </script>
 
