@@ -12,14 +12,14 @@ export default {
   name: 'App',
   data: function () {
     return {
-      message: '',
+      message: ''
     }
   },
   mounted: function () {
     axios.get('http://localhost:5000/api/hello').then((response) => {
       this.message = response.data.message
     })
-  },
+  }
 }
 </script>
 
