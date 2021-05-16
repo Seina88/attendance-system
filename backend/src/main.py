@@ -15,7 +15,7 @@ def root():
 @app.route("/api/hello", methods=["GET"])
 def hello():
     response = {
-        "message": "Hello World!"
+        "message": "Hello, World!"
     }
     return make_response(jsonify(response))
 

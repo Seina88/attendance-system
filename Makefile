@@ -17,3 +17,17 @@ frontend-start:
 backend-start:
 	cd backend/; \
 	sh ./bin/start.sh
+
+build:
+	docker-compose build
+
+start:
+	docker-compose up -d
+
+stop:
+	docker-compose stop
+
+restart: build start
+
+backend-attach:
+	docker-compose exec backend bash

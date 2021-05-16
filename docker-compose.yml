@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    backend:
+        build: ./backend
+        env_file:
+            - .env
+        ports:
+            - "5000:5000"
+        volumes:
+            - "./backend:/app/backend"
+        tty: true
+        environment:
+            TZ: Asia/Tokyo
+        command: python ./src/main.py
