@@ -3,16 +3,16 @@ install: frontend-install backend-install
 frontend-install:
 	cd frontend/; \
 	yarn install; \
-	cd -;
+	cd -
 
 backend-install:
 	cd backend/; \
 	poetry install; \
-	cd -;
+	cd -
 
 frontend-start:
 	cd frontend/; \
-	yarn start
+	yarn run start
 
 backend-start:
 	cd backend/; \
@@ -28,6 +28,9 @@ stop:
 	docker-compose stop
 
 restart: build start
+
+frontend-attach:
+	docker-compose exec frontend bash
 
 backend-attach:
 	docker-compose exec backend bash

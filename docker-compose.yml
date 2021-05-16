@@ -1,6 +1,19 @@
 version: "3"
 
 services:
+    frontend:
+        build: ./frontend
+        env_file:
+            - .env
+        ports:
+            - "8080:8080"
+        volumes:
+            - "./frontend:/app/frontend"
+        tty: true
+        environment:
+            TZ: Asia/Tokyo
+        command:
+            yarn run start
     backend:
         build: ./backend
         env_file:
