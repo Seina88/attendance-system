@@ -15,20 +15,44 @@
    cp .env.sample .env
    ```
 
-3. パッケージのインストール
+## サーバの起動
+
+### Docker
+
+1. Docker コンテナのビルド・起動、Web ページを開く
+
+   ```sh
+   make build
+   make start
+   open http://localhost:8080
+   ```
+
+2. Docker コンテナの停止
+
+   ```sh
+   make stop
+   ```
+
+### ローカル
+
+1. パッケージのインストール
 
    ```sh
    make install
    ```
 
-4. API サーバの起動
+2. API サーバの起動
 
    ```sh
    make backend-start
    ```
 
-5. Vue サーバの起動
+3. Vue サーバの起動
 
    ```sh
    make frontend-start
    ```
+
+4. サーバの停止
+
+   2, 3 の画面で、それぞれ`Ctrl + C`
