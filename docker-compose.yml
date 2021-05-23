@@ -25,3 +25,16 @@ services:
         environment:
             TZ: Asia/Tokyo
         command: python ./src/main.py
+    database:
+        build: ./mysql
+        platform: linux/x86_64
+        env_file:
+            - .env
+        ports:
+            - "3306:3306"
+        volumes:
+            # - ./mysql/data:/var/lib/mysql
+            - ./mysql/log:/var/log/mysql
+            - ./mysql/sqls:/docker-entrypoint-initdb.d
+        environment:
+            TZ: Asia/Tokyo

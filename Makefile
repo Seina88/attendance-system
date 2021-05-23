@@ -34,3 +34,6 @@ frontend-attach:
 
 backend-attach:
 	docker-compose exec backend bash
+
+database-attach:
+	docker-compose exec database mysql -u root -p
