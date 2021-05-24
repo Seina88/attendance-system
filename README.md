@@ -24,7 +24,7 @@
    ```sh
    make build
    make start
-   open http://localhost:8080
+   open http://localhost
    ```
 
 2. Docker コンテナの停止
