@@ -1,9 +1,11 @@
 from flask import Flask, make_response, jsonify
+from flask_restful import Resource, Api
 from flask_cors import CORS
 from config import Config
 
 
 app = Flask(__name__)
+api = Api(app)
 CORS(app)
 
 
@@ -12,12 +14,21 @@ def root():
     return "root"
 
 
-@app.route("/api/hello", methods=["GET"])
-def hello():
-    response = {
-        "message": "Hello, World!"
-    }
-    return make_response(jsonify(response))
+class HelloWorld(Resource):
+    def get(self):
+        return {"message": "Hello World by get"}
+
+    def post(self):
+        return {"message": "Hello World by post"}
+
+    def put(self):
+        return {"message": "Hello World by put"}
+
+    def delete(self):
+        return {"message": "Hello World by delete"}
+
+
+api.add_resource(HelloWorld, "/api/hello")
 
 
 if __name__ == "__main__":
