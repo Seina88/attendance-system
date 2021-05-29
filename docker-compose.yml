@@ -32,7 +32,7 @@ services:
         tty: true
         environment:
             TZ: Asia/Tokyo
-        command: python ./src/main.py
+        command: flask run -h 0.0.0.0
     database:
         build: ./mysql
         platform: linux/x86_64

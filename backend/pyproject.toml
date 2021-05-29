@@ -17,6 +17,8 @@ Flask-Migrate = "^3.0.0"
 flask-marshmallow = "^0.14.0"
 marshmallow-sqlalchemy = "^0.26.0"
 PyMySQL = "^1.0.2"
+SQLAlchemy-Utils = "^0.37.4"
+cryptography = "^3.4.7"
 
 [tool.poetry.dev-dependencies]
 

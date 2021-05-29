@@ -19,3 +19,5 @@ COPY --from=builder /app/backend/requirements.txt .
 RUN pip install -r requirements.txt
 
 ADD . .
+
+WORKDIR /app/backend/src/
