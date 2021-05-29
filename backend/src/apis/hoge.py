@@ -1,10 +1,8 @@
 from flask_restful import Resource, reqparse, abort
-
 from flask import jsonify
-
-from src.models.hoge import HogeModel, HogeSchema
-
-from src.database import db
+from ..models.hoge import HogeModel, HogeSchema
+from ..database import Database
+db = Database().sqlAlchemy
 
 
 class HogeListAPI(Resource):
