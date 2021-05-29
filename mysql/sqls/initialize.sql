@@ -1,2 +1,2 @@
-CREATE DATABASE hoge;
-use hoge;
+CREATE DATABASE attendance_system;
+use attendance_system;
