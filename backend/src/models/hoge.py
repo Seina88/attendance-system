@@ -5,6 +5,7 @@ from sqlalchemy_utils import UUIDType
 import uuid
 from ..database import Database
 
+
 db = Database().sqlAlchemy
 ma = Marshmallow()
 
