@@ -20,8 +20,8 @@ frontend-start:
 	yarn run start
 
 backend-start:
-	cd backend/; \
-	sh ./bin/start.sh
+	cd backend/src/; \
+	sh ../bin/start.sh
 
 build:
 	docker-compose build
