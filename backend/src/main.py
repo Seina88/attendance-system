@@ -1,12 +1,17 @@
-from flask import Flask, make_response, jsonify
+from flask import Flask
 from flask_restful import Resource, Api
 from flask_cors import CORS
 from config import Config
 
 
-app = Flask(__name__)
-api = Api(app)
-CORS(app)
+def create_app():
+    app = Flask(__name__)
+    api = Api(app)
+    CORS(app)
+    return app, api
+
+
+app, api = create_app()
 
 
 @app.route("/", methods=["GET"])
