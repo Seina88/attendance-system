@@ -13,6 +13,7 @@ def create_app():
     CORS(app)
 
     app.config.from_object(Config)
+
     database.initialize(app)
 
     api = Api(app)
