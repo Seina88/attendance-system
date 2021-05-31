@@ -8,4 +8,7 @@ class Database:
 
     def initialize(self, app):
         self.sqlAlchemy.init_app(app)
-        Migrate(app, self.sqlAlchemy)
+        self.migrate = Migrate(app, self.sqlAlchemy)
+
+
+database = Database()

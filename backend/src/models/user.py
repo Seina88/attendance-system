@@ -1,12 +1,12 @@
 from sqlalchemy_utils import UUIDType
 import uuid
 from datetime import datetime
-from ..database import Database
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
+from ..database import database
 
 
-db = Database().sqlAlchemy
+db = database.sqlAlchemy
 ma = Marshmallow()
 
 

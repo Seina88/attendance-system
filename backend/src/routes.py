@@ -7,6 +7,4 @@ class Router:
         self.api = api
 
     def set(self):
-        self.api.add_resource(HogeListAPI, "/hoges")
-        self.api.add_resource(HogeAPI, "/hoges/<id>")
         self.api.add_resource(HelloWorld, "/api/hello")

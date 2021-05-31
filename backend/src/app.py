@@ -2,8 +2,9 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
 from .config import Config
-from .database import Database
+from .database import database
 from .routes import Router
+from .models import *
 
 
 def create_app():
@@ -12,7 +13,7 @@ def create_app():
     CORS(app)
 
     app.config.from_object(Config)
-    Database().initialize(app)
+    database.initialize(app)
 
     api = Api(app)
     router = Router(api).set()
