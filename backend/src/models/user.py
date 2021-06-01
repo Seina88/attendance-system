@@ -3,10 +3,9 @@ import uuid
 from datetime import datetime
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
-from ..database import database
+from ..database import database as db
 
 
-db = database.sqlAlchemy
 ma = Marshmallow()
 
 

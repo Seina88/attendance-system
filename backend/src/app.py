@@ -7,18 +7,18 @@ from .routes import Router
 from .models import *
 
 
-def create_app():
-    app = Flask(__name__)
+class App(Flask):
+    def __init__(self, database, Config):
+        super().__init__(__name__)
 
-    CORS(app)
+        CORS(self)
 
-    app.config.from_object(Config)
+        self.config.from_object(Config)
 
-    database.initialize(app)
+        database.initialize(self)
 
-    api = Api(app)
-    router = Router(api).set()
-    return app
+        self.api = Api(self)
+        self.router = Router(self.api).set()
 
 
-app = create_app()
+app = App(database, Config)
