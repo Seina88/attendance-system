@@ -8,8 +8,8 @@ from .models import *
 
 
 class App(Flask):
-    def __init__(self, database, Config):
-        super().__init__(__name__)
+    def __init__(self, import_name, database, Config):
+        super().__init__(import_name)
 
         CORS(self)
 
@@ -21,4 +21,4 @@ class App(Flask):
         self.router = Router(self.api).set()
 
 
-app = App(database, Config)
+app = App(__name__, database, Config)
