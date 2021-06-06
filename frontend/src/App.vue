@@ -1,24 +1,15 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" />
-    <h1>{{ message }}</h1>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-
+import Logo from './components/parts/Logo'
 export default {
   name: 'App',
-  data: function () {
-    return {
-      message: ''
-    }
-  },
-  mounted: function () {
-    axios.get('http://localhost:5000/api/hello').then((response) => {
-      this.message = response.data.message
-    })
+  components: {
+    Logo
   }
 }
 </script>
