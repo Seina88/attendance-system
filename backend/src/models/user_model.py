@@ -10,7 +10,7 @@ ma = Marshmallow()
 class UserModel(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    nickname = db.Column(db.String(255), nullable=False, unique=True)
+    nickname = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
