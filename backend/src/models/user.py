@@ -1,5 +1,3 @@
-from sqlalchemy_utils import UUIDType
-import uuid
 from datetime import datetime
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
@@ -10,18 +8,21 @@ ma = Marshmallow()
 
 
 class UserModel(db.Model):
-    __tablename__ = "user"
-    id = db.Column(UUIDType(binary=False),
-                   primary_key=True, default=uuid.uuid4)
-    name = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
+    __tablename__ = "users"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nickname = db.Column(db.String(255), nullable=False, unique=True)
+    first_name = db.Column(db.String(255), nullable=False)
+    last_name = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.now, onupdate=datetime.now)
 
-    def __init__(self, name, email, password):
-        self.name = name
+    def __init__(self, nickname, first_name, last_name, email, password):
+        self.nickname = nickname
+        self.first_name = first_name
+        self.last_name = last_name
         self.email = email
         self.password = password
 
