@@ -19,7 +19,7 @@
         </div>
         <div>
           <label for="password">Password</label>
-          <input type="password" placeholder="password">
+          <input type="password" placeholder="password" required>
         </div>
         <div>
           <input class="button" type="submit" value="Sign In">
