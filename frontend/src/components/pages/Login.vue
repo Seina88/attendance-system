@@ -10,12 +10,16 @@
       </header>
       <form class="login_form">
         <div>
+          <label for="nickname">User name</label>
+          <input type="nickname" placeholder="user name">
+        </div>
+        <div>
           <label for="email">E-mail address</label>
-          <input type="email" id="email" name="email" placeholder="mail@address.com">
+          <input type="email" placeholder="mail@address.com">
         </div>
         <div>
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="password">
+          <input type="password" placeholder="password">
         </div>
         <div>
           <input class="button" type="submit" value="Sign In">
@@ -122,7 +126,8 @@ svg {
   border-radius: 0.1875em;
 }
 .login input[type="email"],
-.login input[type="password"] {
+.login input[type="password"],
+.login input[type="nickname"] {
   background-color: #eee;
   color: #777;
   padding: 0.25em 0.625em;
