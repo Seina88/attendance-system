@@ -1,17 +1,10 @@
 class UserService:
-    def __init__(self, repository):
-        self.repository = repository
-
-    def get_all(self):
-        return self.repository.get_all()
-
-    def get_by_id(self, id):
-        return self.repository.get_by_id(id)
+    def __init__(self, user_repository):
+        self.user_repository = user_repository
 
     def exists(self, user):
-        users_having_the_same_email = self.repository.get_by_email(user.email)
-        return len(users_having_the_same_email) > 0
-
-    def add(self, user):
-        self.repository.add(user)
-        self.repository.commit()
+        users = [
+            self.user_repository.find_by_nickname(user.nickname),
+            self.user_repository.find_by_email(user.email)
+        ]
+        return any(users)

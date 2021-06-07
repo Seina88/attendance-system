@@ -19,6 +19,7 @@ marshmallow-sqlalchemy = "^0.26.0"
 PyMySQL = "^1.0.2"
 SQLAlchemy-Utils = "^0.37.4"
 cryptography = "^3.4.7"
+Flask-Session = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 

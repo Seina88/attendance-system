@@ -2,6 +2,7 @@ from datetime import datetime
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
 from ..database import database as db
+from .session_model import SessionModel
 
 
 ma = Marshmallow()
@@ -10,7 +11,7 @@ ma = Marshmallow()
 class UserModel(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    nickname = db.Column(db.String(255), nullable=False)
+    nickname = db.Column(db.String(255), nullable=False, unique=True)
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
@@ -18,6 +19,7 @@ class UserModel(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.now, onupdate=datetime.now)
+    sessions = db.relationship(SessionModel, backref="users", lazy=True)
 
     def __init__(self, nickname, first_name, last_name, email, password):
         self.nickname = nickname
