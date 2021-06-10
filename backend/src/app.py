@@ -3,13 +3,13 @@ from flask_cors import CORS
 from flask_restful import Api
 from configs.app_config import AppConfig
 from configs.database_config import DatabaseConfig
-from database import database
+from database import database, Database
 from router import Router
 from domains.models import *
 
 
 class App(Flask):
-    def __init__(self, import_name, app_config, database_config, database):
+    def __init__(self, import_name: str, app_config: type, database_config: type, database: Database):
         super().__init__(import_name)
 
         CORS(self)

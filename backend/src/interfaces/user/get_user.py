@@ -25,7 +25,7 @@ class GetUser(Resource):
 
         super().__init__()
 
-    def get(self, id):
+    def get(self, id: str):
         args = self.reqparse.parse_args()
 
         response = self.user_application_service.get(id, args.api_token)
