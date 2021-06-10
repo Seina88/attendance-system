@@ -1,6 +1,6 @@
-from .apis.user import User
-from .apis.user_list import UserList
-from .apis.login import Login
+from interfaces.user.get_user import GetUser
+from interfaces.user.create_user import CreateUser
+from interfaces.login import Login
 
 
 class Router:
@@ -8,6 +8,6 @@ class Router:
         self.api = api
 
     def set(self):
-        self.api.add_resource(User, "/api/users/<id>")
-        self.api.add_resource(UserList, "/api/users")
+        self.api.add_resource(GetUser, "/api/users/<id>")
+        self.api.add_resource(CreateUser, "/api/users/create")
         self.api.add_resource(Login, "/api/login")

@@ -1,16 +1,17 @@
+import uuid
 from datetime import datetime
+from sqlalchemy_utils import UUIDType
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
-from ..database import database as db
-from .session_model import SessionModel
+from database import database as db
+from domains.models.session import Session
 
 
-ma = Marshmallow()
-
-
-class UserModel(db.Model):
+class User(db.Model):
     __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    id = db.Column(UUIDType(binary=False),
+                   primary_key=True, default=uuid.uuid4)
     nickname = db.Column(db.String(255), nullable=False, unique=True)
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
@@ -19,9 +20,10 @@ class UserModel(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.now, onupdate=datetime.now)
-    sessions = db.relationship(SessionModel, backref="users", lazy=True)
 
-    def __init__(self, nickname, first_name, last_name, email, password):
+    sessions = db.relationship(Session, backref="users", lazy=True)
+
+    def __init__(self, nickname: str, first_name: str, last_name: str, email: str, password: str):
         self.nickname = nickname
         self.first_name = first_name
         self.last_name = last_name
@@ -29,9 +31,9 @@ class UserModel(db.Model):
         self.password = password
 
 
-class UserSchema(ma.SQLAlchemyAutoSchema):
+class UserSchema(Marshmallow().SQLAlchemyAutoSchema):
     class Meta:
-        model = UserModel
+        model = User
         load_instance = True
 
     created_at = fields.DateTime('%Y-%m-%dT%H:%M:%S')

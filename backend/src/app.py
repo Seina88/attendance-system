@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
-from .configs.app_config import AppConfig
-from .configs.database_config import DatabaseConfig
-from .database import database
-from .router import Router
-from .models import *
+from configs.app_config import AppConfig
+from configs.database_config import DatabaseConfig
+from database import database
+from router import Router
+from domains.models import *
 
 
 class App(Flask):
