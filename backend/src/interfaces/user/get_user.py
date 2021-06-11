@@ -1,23 +1,14 @@
 from flask_restful import Resource, reqparse, abort
-from database import database
-from domains.models.user import UserSchema
-from domains.services.user_service import UserService
-from domains.services.session_service import SessionService
-from domains.repositories.user_repository import UserRepository
-from domains.repositories.session_repository import SessionRepository
-from applications.body.response import Response
-from applications.body.error import Error
-from applications.services.user_application_service import UserApplicationService
+
+from container import container
+
+from applications.user.get_user_request import GetUserRequest
+from applications.user.get_user_response import GetUserResponse
 
 
 class GetUser(Resource):
-    def __init__(self):
-        self.user_repository = UserRepository(database)
-        self.session_repository = SessionRepository(database)
-        self.user_service = UserService(self.user_repository)
-        self.session_service = SessionService(self.session_repository)
-        self.user_application_service = UserApplicationService(
-            user_service=self.user_service, session_service=self.session_service, user_repository=self.user_repository)
+    def __init__(self) -> None:
+        self.user_application_service = container.create_user_application_service()
 
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument(
@@ -25,12 +16,13 @@ class GetUser(Resource):
 
         super().__init__()
 
-    def get(self, id: str):
+    def get(self, id: str) -> (dict, int):
         args = self.reqparse.parse_args()
+        request = GetUserRequest(id, args.api_token)
 
-        response = self.user_application_service.get(id, args.api_token)
+        response = self.user_application_service.get(request)
 
-        if isinstance(response, Response):
-            return response.data, response.status, response.headers
+        if isinstance(response, GetUserResponse):
+            return response.body(), response.status
         else:
-            abort(response.status, **response.jsonify())
+            abort(response.status, **response.body())

@@ -3,11 +3,14 @@ from datetime import datetime
 from sqlalchemy_utils import UUIDType
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
-from database import database as db
-from domains.models.session import Session
+
+from domains.user.user import User
+
+from infrastructures.database import db
+from infrastructures.session.session_dto import SessionDto
 
 
-class User(db.Model):
+class UserDto(db.Model):
     __tablename__ = "users"
 
     id = db.Column(UUIDType(binary=False),
@@ -21,26 +24,19 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.now, onupdate=datetime.now)
 
-    sessions = db.relationship(Session, backref="users", lazy=True)
+    sessions = db.relationship(SessionDto, backref="users", lazy=True)
 
-    def __init__(self, nickname: str, first_name: str, last_name: str, email: str, password: str):
-        self.nickname = nickname
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.password = password
-
-    def update(self, nickname: str, first_name: str, last_name: str, email: str, password: str):
-        self.nickname = nickname
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.password = password
+    def update(self, user: User):
+        self.nickname = user.nickname
+        self.first_name = user.first_name
+        self.last_name = user.last_name
+        self.email = user.email
+        self.password = user.password
 
 
 class UserSchema(Marshmallow().SQLAlchemyAutoSchema):
     class Meta:
-        model = User
+        model = UserDto
         load_instance = True
 
     created_at = fields.DateTime('%Y-%m-%dT%H:%M:%S')

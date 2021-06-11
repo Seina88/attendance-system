@@ -1,44 +1,34 @@
 from flask_restful import Resource, reqparse, abort
-from database import database
-from domains.models.user import User, UserSchema
-from domains.services.user_service import UserService
-from domains.services.session_service import SessionService
-from domains.repositories.user_repository import UserRepository
-from domains.repositories.session_repository import SessionRepository
-from applications.body.response import Response
-from applications.body.error import Error
-from applications.services.user_application_service import UserApplicationService
+
+from container import container
+
+from applications.user.update_user_request import UpdateUserRequest
+from applications.user.update_user_response import UpdateUserResponse
 
 
 class UpdateUser(Resource):
-    def __init__(self):
-        self.user_repository = UserRepository(database)
-        self.session_repository = SessionRepository(database)
-        self.user_service = UserService(self.user_repository)
-        self.session_service = SessionService(self.session_repository)
-        self.user_application_service = UserApplicationService(
-            user_service=self.user_service, session_service=self.session_service, user_repository=self.user_repository, session_repository=self.session_repository)
+    def __init__(self) -> None:
+        self.user_application_service = container.create_user_application_service()
 
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument(
             "api_token", location="cookies", required=True)
-        self.reqparse.add_argument("nickname", required=True)
-        self.reqparse.add_argument("first_name", required=True)
-        self.reqparse.add_argument("last_name", required=True)
-        self.reqparse.add_argument("email", required=True)
-        self.reqparse.add_argument("password", required=True)
+        self.reqparse.add_argument("nickname")
+        self.reqparse.add_argument("first_name")
+        self.reqparse.add_argument("last_name")
+        self.reqparse.add_argument("email")
+        self.reqparse.add_argument("password")
 
         super().__init__()
 
-    def put(self, id: str):
+    def put(self, id: str) -> (dict, int):
         args = self.reqparse.parse_args()
-        new_user = User(args.nickname, args.first_name,
-                        args.last_name, args.email, args.password)
+        request = UpdateUserRequest(args.api_token, id, args.nickname,
+                                    args.first_name, args.last_name, args.email, args.password)
 
-        response = self.user_application_service.update(
-            args.api_token, new_user)
+        response = self.user_application_service.update(request)
 
-        if isinstance(response, Response):
-            return response.data, response.status, response.headers
+        if isinstance(response, UpdateUserResponse):
+            return response.body(), response.status
         else:
-            abort(response.status, **response.jsonify())
+            abort(response.status, **response.body())

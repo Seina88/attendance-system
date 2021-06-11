@@ -1,9 +1,10 @@
 from datetime import datetime
-from domains.repositories.session_repository import SessionRepository
+
+from domains.session.session_repository import SessionRepository
 
 
 class SessionService:
-    def __init__(self, session_repository: SessionRepository):
+    def __init__(self, session_repository: SessionRepository) -> None:
         self.session_repository = session_repository
 
     def authenticated(self, api_token: str) -> bool:

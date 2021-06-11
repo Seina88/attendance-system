@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-class DatabaseConfig:
+class MainDatabaseConfig:
     SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8".format(
         **{
             "user": os.getenv("DB_USER", "root"),

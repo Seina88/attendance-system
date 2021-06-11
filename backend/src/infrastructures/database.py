@@ -4,12 +4,13 @@ from flask_migrate import Migrate
 
 
 class Database(SQLAlchemy):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
+        self.migrate = Migrate()
 
     def initialize(self, app: Flask) -> None:
         self.init_app(app)
-        Migrate(app, self)
+        self.migrate.init_app(app, self)
 
 
-database = Database()
+db = Database()
