@@ -8,9 +8,6 @@ from applications.session.create_session_request import CreateSessionRequest
 from applications.session.create_session_response import CreateSessionResponse
 
 
-from container import container
-
-
 class CreateSession(Resource):
     def __init__(self) -> None:
         self.session_application_service = container.create_session_application_service()

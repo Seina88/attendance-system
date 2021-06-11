@@ -26,7 +26,7 @@ class UserDto(db.Model):
 
     sessions = db.relationship(SessionDto, backref="users", lazy=True)
 
-    def update(self, user: User):
+    def update(self, user: User) -> None:
         self.nickname = user.nickname
         self.first_name = user.first_name
         self.last_name = user.last_name

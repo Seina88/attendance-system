@@ -7,9 +7,9 @@ from domains.session.session_repository import SessionRepository
 from domains.user.user_service import UserService
 from domains.session.session_service import SessionService
 
+from infrastructures.database import db, Database
 from infrastructures.user.user_repository_impl import UserRepositoryImpl
 from infrastructures.session.session_repository_impl import SessionRepositoryImpl
-from infrastructures.database import db, Database
 
 from applications.user.user_application_service import UserApplicationService
 from applications.session.session_application_service import SessionApplicationService

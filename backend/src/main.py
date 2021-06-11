@@ -8,6 +8,8 @@ from configs.app_config import AppConfig
 from configs.database_config import MainDatabaseConfig
 
 from infrastructures.database import db, Database
+from infrastructures.user.user_dto import UserDto
+from infrastructures.session.session_dto import SessionDto
 
 from interfaces.router import Router
 
