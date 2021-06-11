@@ -30,6 +30,13 @@ class User(db.Model):
         self.email = email
         self.password = password
 
+    def update(self, nickname: str, first_name: str, last_name: str, email: str, password: str):
+        self.nickname = nickname
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        self.password = password
+
 
 class UserSchema(Marshmallow().SQLAlchemyAutoSchema):
     class Meta:

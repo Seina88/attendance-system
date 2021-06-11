@@ -1,6 +1,7 @@
 from flask_restful import Api
 from interfaces.user.get_user import GetUser
 from interfaces.user.create_user import CreateUser
+from interfaces.user.update_user import UpdateUser
 from interfaces.login import Login
 
 
@@ -11,4 +12,5 @@ class Router:
     def set(self) -> None:
         self.api.add_resource(GetUser, "/api/users/<id>")
         self.api.add_resource(CreateUser, "/api/users/create")
+        self.api.add_resource(UpdateUser, "/api/users/<id>/update")
         self.api.add_resource(Login, "/api/login")

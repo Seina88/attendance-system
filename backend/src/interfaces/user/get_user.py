@@ -17,7 +17,7 @@ class GetUser(Resource):
         self.user_service = UserService(self.user_repository)
         self.session_service = SessionService(self.session_repository)
         self.user_application_service = UserApplicationService(
-            self.user_service, self.session_service, self.user_repository)
+            user_service=self.user_service, session_service=self.session_service, user_repository=self.user_repository)
 
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument(
