@@ -1,9 +1,7 @@
 import json
 from uuid import UUID
 
-from tests.interfaces.main_test_case import MainTestCase
-
-from domains.user.user import User
+from tests.main_test_case import MainTestCase
 
 
 class TestCreateUser(MainTestCase):
@@ -18,7 +16,7 @@ class TestCreateUser(MainTestCase):
         response = self.client.post(
             "/api/users/create", data=json.dumps(request), content_type="application/json"
         )
-        data = json.loads(response.get_data())
+        data = json.loads(response.data)
         self.assert_status(response, 201)
         assert isinstance(UUID(data["id"]), UUID)
         request["id"] = data["id"]

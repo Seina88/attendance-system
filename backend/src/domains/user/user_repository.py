@@ -11,28 +11,28 @@ class UserRepository(ABC):
 
     @abstractmethod
     def find_by_id(self, id: UUID) -> Optional[User]:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def find_by_nickname(self, nickname: str) -> Optional[User]:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def find_by_email(self, email: str) -> Optional[User]:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def find_by_info(self, info: str) -> Optional[User]:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def add(self, user: User) -> None:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def update(self, user: User) -> None:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def commit(self) -> None:
-        pass
+        raise NotImplementedError

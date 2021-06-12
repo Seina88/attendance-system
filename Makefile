@@ -75,7 +75,7 @@ database-attach:
 	docker-compose exec database mysql -u root -p
 
 .PHONY: test
-test: start backend-test
+test: backend-test
 
 .PHONY: backend-test
 backend-test:

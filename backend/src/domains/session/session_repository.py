@@ -10,12 +10,12 @@ class SessionRepository(ABC):
 
     @abstractmethod
     def find_by_api_token(self, api_token: str) -> Optional[Session]:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def add(self, session: Session) -> None:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def commit(self) -> None:
-        pass
+        raise NotImplementedError

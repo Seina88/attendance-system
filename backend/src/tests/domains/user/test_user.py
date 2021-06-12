@@ -57,7 +57,7 @@ class TestUser:
         assert user.email == new_email
         assert user.password == new_password
 
-    def test_update関数の引数にNoneを指定したメンバ変数は更新されない(self, set_fields: tuple, update_fields: tuple):
+    def test_update関数の引数にNoneを指定したメンバ変数は更新されない(self, set_fields: tuple, update_fields: tuple) -> None:
         user = User(*set_fields)
         id = user.id
         nickname = user.nickname

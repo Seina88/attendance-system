@@ -3,6 +3,8 @@ from flask_testing import TestCase
 
 from main import app
 
+from tests.fixtures.seed import seed
+
 from configs.app_config import TestAppConfig
 from configs.database_config import TestDatabaseConfig
 
@@ -17,10 +19,12 @@ class MainTestCase(TestCase):
 
     def setUp(self) -> None:
         self.client = self.app.test_client()
+        self.db = db
 
-        db.create_all()
-        db.session.commit()
+        self.db.create_all()
+        self.db.session.commit()
+        seed(db)
 
     def tearDown(self) -> None:
-        db.session.remove()
-        db.drop_all()
+        self.db.session.remove()
+        self.db.drop_all()

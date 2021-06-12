@@ -11,7 +11,7 @@ from domains.session.session_repository import SessionRepository
 
 
 class SessionApplicationService:
-    def __init__(self, user_repository: UserRepository, session_repository: SessionRepository):
+    def __init__(self, user_repository: UserRepository, session_repository: SessionRepository) -> None:
         self.user_repository = user_repository
         self.session_repository = session_repository
 
