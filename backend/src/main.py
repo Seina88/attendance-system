@@ -4,7 +4,7 @@ from flask_restful import Api
 
 from app import app
 
-from configs.app_config import AppConfig
+from configs.app_config import MainAppConfig
 from configs.database_config import MainDatabaseConfig
 
 from infrastructures.database import db, Database
@@ -26,4 +26,4 @@ def main(app: Flask, db: Database, app_config: type, database_config: type) -> N
     Router(api)
 
 
-main(app, db, AppConfig, MainDatabaseConfig)
+main(app, db, MainAppConfig, MainDatabaseConfig)

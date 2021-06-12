@@ -20,6 +20,8 @@ PyMySQL = "^1.0.2"
 SQLAlchemy-Utils = "^0.37.4"
 cryptography = "^3.4.7"
 Flask-Session = "^0.3.2"
+Flask-Testing = "^0.8.1"
+pytest = "^6.2.4"
 
 [tool.poetry.dev-dependencies]
 
