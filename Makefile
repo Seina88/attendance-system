@@ -79,4 +79,4 @@ test: start backend-test
 
 .PHONY: backend-test
 backend-test:
-	docker-compose exec backend pytest -v
+	docker-compose exec backend pytest -vvv

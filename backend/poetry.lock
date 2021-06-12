@@ -230,6 +230,14 @@ python-versions = "*"
 Flask = "*"
 
 [[package]]
+name = "flaskr"
+version = "1.0.0"
+description = ""
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "greenlet"
 version = "1.1.0"
 description = "Lightweight in-process concurrent programming"
@@ -538,7 +546,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "f0a26fb87248e0d7aa7a7080134661fd9885494d4a7292e7bcaffd93043c64f7"
+content-hash = "ebd65f6302032dfa33261e4764346f3a94877a8a53c3b55926fca8c343c287c5"
 
 [metadata.files]
 alembic = [
@@ -668,6 +676,9 @@ flask-sqlalchemy = [
 ]
 flask-testing = [
     {file = "Flask-Testing-0.8.1.tar.gz", hash = "sha256:0a734d7b68e63a9410b413cd7b1f96456f9a858bd09a6222d465650cc782eb01"},
+]
+flaskr = [
+    {file = "flaskr-1.0.0-py3.6.egg", hash = "sha256:53a291da375d37d08dc34490fe56dbb2c979e51b9cb170a7fed62cf91ac25868"},
 ]
 greenlet = [
     {file = "greenlet-1.1.0-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:60848099b76467ef09b62b0f4512e7e6f0a2c977357a036de602b653667f5f4c"},

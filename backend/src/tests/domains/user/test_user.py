@@ -1,5 +1,5 @@
-from uuid import UUID, uuid4
 import pytest
+from uuid import UUID, uuid4
 
 from domains.user.user import User
 
@@ -10,7 +10,7 @@ def set_fields() -> (UUID, str, str, str, str, str):
     nickname = "nickname"
     first_name = "first_name"
     last_name = "last_name"
-    email = "test@example.com"
+    email = "email@example.com"
     password = "password"
     return id, nickname, first_name, last_name, email, password
 
@@ -20,7 +20,7 @@ def update_fields() -> (str, str, str, str, str):
     nickname = "new_nickname"
     first_name = "new_first_name"
     last_name = "new_last_name"
-    email = "new_test@example.com"
+    email = "new_email@example.com"
     password = "new_password"
     return nickname, first_name, last_name, email, password
 

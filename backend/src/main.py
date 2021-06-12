@@ -14,7 +14,7 @@ from infrastructures.session.session_dto import SessionDto
 from interfaces.router import Router
 
 
-def main(app: Flask, db: Database, app_config: type, database_config: type) -> None:
+def main(app: Flask, db: Database, app_config: type, database_config: type) -> Flask:
     CORS(app)
 
     app.config.from_object(app_config)
@@ -25,5 +25,7 @@ def main(app: Flask, db: Database, app_config: type, database_config: type) -> N
     api = Api(app)
     Router(api)
 
+    return app
 
-main(app, db, MainAppConfig, MainDatabaseConfig)
+
+app = main(app, db, MainAppConfig, MainDatabaseConfig)
