@@ -31,7 +31,7 @@ def create_users(num_users: int) -> list[UserDto]:
     for _ in range(num_users):
         last_name, first_name = faker.name().split(" ")
         nickname = "{}-{}".format(kakasi.convert(first_name)[
-            0]["passport"], randint(0, 100))
+            0]["passport"], randint(0, 2 ** 10))
         email = nickname + "@example.com"
         password = md5(nickname.encode("utf-8")).hexdigest()
         user = User(None, nickname, first_name, last_name, email, password)

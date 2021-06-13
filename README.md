@@ -62,16 +62,20 @@
 ```shell
 $ make test
 
-============================================================ test session starts =============================================================
+===================================================================== test session starts ======================================================================
 platform linux -- Python 3.9.4, pytest-6.2.4, py-1.10.0, pluggy-0.13.1 -- /usr/local/bin/python
 cachedir: .pytest_cache
 rootdir: /app/backend/src
-collected 4 items
+plugins: Faker-8.7.0
+collected 15 items
 
-tests/domains/user/test_user.py::TestUser::test_すべての引数を与えた場合に正常に登録される PASSED                                      [ 25%]
-tests/domains/user/test_user.py::TestUser::test_idをNoneで与えた場合にUUIDが発行される PASSED                                          [ 50%]
-tests/domains/user/test_user.py::TestUser::test_update関数を実行するとid以外のメンバ変数が更新される PASSED                            [ 75%]
-tests/domains/user/test_user.py::TestUser::test_update関数の引数にNoneを指定したメンバ変数は更新されない PASSED                        [100%]
+tests/domains/user/test_user.py::TestUser::test_すべての引数を与えた場合に正常に登録される PASSED                                                        [  6%]
+tests/domains/user/test_user.py::TestUser::test_idをNoneで与えた場合にUUIDが発行される PASSED                                                            [ 13%]
 
-============================================================= 4 passed in 0.21s ==============================================================
+...
+
+tests/interfaces/user/test_update_user.py::TestUpdateUser::test_api_tokenを付与しなかった場合400エラー PASSED                                            [ 93%]
+tests/interfaces/user/test_update_user.py::TestUpdateUser::test_ユーザ情報を更新 PASSED                                                                  [100%]
+
+====================================================================== 15 passed in 2.28s ======================================================================
 ```
