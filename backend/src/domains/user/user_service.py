@@ -8,12 +8,11 @@ class UserService:
     def __init__(self, user_repository: UserRepository) -> None:
         self.user_repository = user_repository
 
-    def exists(self, user: User) -> bool:
-        users = [
-            self.user_repository.find_by_nickname(user.nickname),
-            self.user_repository.find_by_email(user.email)
-        ]
-        return any(users)
+    def exists_with_nickname(self, nickname: str) -> bool:
+        return self.user_repository.find_by_nickname(nickname) is not None
+
+    def exists_with_email(self, email: str) -> bool:
+        return self.user_repository.find_by_email(email) is not None
 
     def can_update_nickname(self, id: UUID, nickname: str) -> bool:
         user = self.user_repository.find_by_nickname(nickname)

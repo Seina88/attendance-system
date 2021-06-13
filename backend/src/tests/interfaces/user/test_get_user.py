@@ -28,12 +28,12 @@ class TestGetUser(MainTestCase):
         self.assert_status(response, 200)
         assert data == expected
 
-    def test_cookieを付与しないと400エラー(self) -> None:
+    def test_api_tokenを付与しなかった場合400エラー(self) -> None:
         expected, api_token = get_user_from_db(self.db)
         response = self.client.get("/api/users/{}".format(expected["id"]))
         self.assert_status(response, 400)
 
-    def test_api_tokenが無効の場合は403エラー(self) -> None:
+    def test_api_tokenが無効の場合403エラー(self) -> None:
         expected, _ = get_user_from_db(self.db)
         self.client.set_cookie("localhost", "api_token", "")
         response = self.client.get("/api/users/{}".format(expected["id"]))
@@ -41,7 +41,7 @@ class TestGetUser(MainTestCase):
         data = json.loads(response.data)
         assert data["message"] == "権限がありません。"
 
-    def test_存在しないidを指定すると404エラー(self) -> None:
+    def test_存在しないidを指定した場合404エラー(self) -> None:
         _, api_token = get_user_from_db(self.db)
         self.client.set_cookie("localhost", "api_token", api_token)
         response = self.client.get("/api/users/{}".format(uuid4()))

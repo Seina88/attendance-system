@@ -38,8 +38,11 @@ class UserApplicationService:
         user = User(None, request.nickname, request.first_name,
                     request.last_name, request.email, request.password)
 
-        if self.user_service.exists(user):
-            return Error(409, "そのユーザーはすでに登録されています。")
+        if self.user_service.exists_with_nickname(user.nickname):
+            return Error(409, "そのニックネームはすでに使用されています。")
+
+        if self.user_service.exists_with_email(user.email):
+            return Error(409, "そのメールアドレスはすでに登録されています。")
 
         self.user_repository.add(user)
         self.user_repository.commit()
@@ -54,7 +57,7 @@ class UserApplicationService:
         user = self.user_repository.find_by_id(session.user_id)
 
         if str(user.id) != request.id:
-            return Error(404, "ユーザーが一致しません。")
+            return Error(403, "ユーザーが一致しません。")
 
         new_user = User(None, request.nickname, request.first_name,
                         request.last_name, request.email, request.password)
