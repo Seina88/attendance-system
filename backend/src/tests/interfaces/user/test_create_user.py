@@ -16,7 +16,7 @@ class TestCreateUser(MainTestCase):
             "password": "password"
         }
         response = self.client.post(
-            "/api/users/create", data=json.dumps(request), content_type="application/json"
+            "/api/users", data=json.dumps(request), content_type="application/json"
         )
         data = json.loads(response.data)
         self.assert_status(response, 201)
@@ -27,7 +27,7 @@ class TestCreateUser(MainTestCase):
     def test_必要なパラメータを指定しなかった場合400エラー(self) -> None:
         request = {}
         response = self.client.post(
-            "/api/users/create", data=json.dumps(request), content_type="application/json"
+            "/api/users", data=json.dumps(request), content_type="application/json"
         )
         self.assert_status(response, 400)
 
@@ -41,7 +41,7 @@ class TestCreateUser(MainTestCase):
             "password": "password"
         }
         response = self.client.post(
-            "/api/users/create", data=json.dumps(request), content_type="application/json"
+            "/api/users", data=json.dumps(request), content_type="application/json"
         )
         data = json.loads(response.data)
         self.assert_status(response, 409)
@@ -57,7 +57,7 @@ class TestCreateUser(MainTestCase):
             "password": "password"
         }
         response = self.client.post(
-            "/api/users/create", data=json.dumps(request), content_type="application/json"
+            "/api/users", data=json.dumps(request), content_type="application/json"
         )
         data = json.loads(response.data)
         self.assert_status(response, 409)

@@ -31,7 +31,7 @@ class TestUpdateUser(MainTestCase):
             "password": "password"
         }
         response = self.client.put(
-            "/api/users/{}/update".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
+            "/api/users/{}".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
         )
         data = json.loads(response.data)
         self.assert_status(response, 201)
@@ -49,7 +49,7 @@ class TestUpdateUser(MainTestCase):
             "password": "password"
         }
         response = self.client.put(
-            "/api/users/{}/update".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
+            "/api/users/{}".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
         )
         data = json.loads(response.data)
         self.assert_status(response, 201)
@@ -65,7 +65,7 @@ class TestUpdateUser(MainTestCase):
             "password": "password"
         }
         response = self.client.put(
-            "/api/users/{}/update".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
+            "/api/users/{}".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
         )
         self.assert_status(response, 400)
 
@@ -80,7 +80,7 @@ class TestUpdateUser(MainTestCase):
         }
         self.client.set_cookie("localhost", "api_token", "")
         response = self.client.put(
-            "/api/users/{}/update".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
+            "/api/users/{}".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
         )
         self.assert_status(response, 403)
         data = json.loads(response.data)
@@ -97,7 +97,7 @@ class TestUpdateUser(MainTestCase):
         }
         self.client.set_cookie("localhost", "api_token", api_token)
         response = self.client.put(
-            "/api/users/{}/update".format(uuid4()), data=json.dumps(request), content_type="application/json"
+            "/api/users/{}".format(uuid4()), data=json.dumps(request), content_type="application/json"
         )
         self.assert_status(response, 403)
         data = json.loads(response.data)
@@ -116,7 +116,7 @@ class TestUpdateUser(MainTestCase):
         }
         self.client.set_cookie("localhost", "api_token", api_token)
         response = self.client.put(
-            "/api/users/{}/update".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
+            "/api/users/{}".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
         )
         self.assert_status(response, 409)
         data = json.loads(response.data)
@@ -135,7 +135,7 @@ class TestUpdateUser(MainTestCase):
         }
         self.client.set_cookie("localhost", "api_token", api_token)
         response = self.client.put(
-            "/api/users/{}/update".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
+            "/api/users/{}".format(prev_user["id"]), data=json.dumps(request), content_type="application/json"
         )
         self.assert_status(response, 409)
         data = json.loads(response.data)
