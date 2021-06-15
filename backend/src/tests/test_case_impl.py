@@ -11,7 +11,7 @@ from configs.database_config import TestDatabaseConfig
 from infrastructures.database import db
 
 
-class MainTestCase(TestCase):
+class TestCaseImpl(TestCase):
     def create_app(self) -> Flask:
         app.config.from_object(TestAppConfig)
         app.config.from_object(TestDatabaseConfig)

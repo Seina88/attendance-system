@@ -1,12 +1,12 @@
 import json
 from uuid import UUID
 
-from tests.main_test_case import MainTestCase
+from tests.test_case_impl import TestCaseImpl
 
 from infrastructures.user.user_dto import UserDto
 
 
-class TestCreateUser(MainTestCase):
+class TestCreateUser(TestCaseImpl):
     def test_ユーザを作成(self) -> None:
         request = {
             "nickname": "nickname",

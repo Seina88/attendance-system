@@ -26,7 +26,7 @@ def update_fields() -> (str, str, str, str, str):
 
 
 class TestUser:
-    def test_すべての引数を与えた場合に正常に登録される(self, set_fields: tuple) -> None:
+    def test_すべての引数を与えた場合に正常にインスタンスが生成される(self, set_fields: tuple) -> None:
         id, nickname, first_name, last_name, email, password = set_fields
         user = User(id, nickname, first_name,
                     last_name, email, password)

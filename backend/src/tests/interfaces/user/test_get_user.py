@@ -1,7 +1,7 @@
 import json
 from uuid import uuid4
 
-from tests.main_test_case import MainTestCase
+from tests.test_case_impl import TestCaseImpl
 
 from infrastructures.database import Database
 from infrastructures.user.user_dto import UserDto, UserSchema
@@ -19,7 +19,7 @@ def get_user_from_db(db: Database) -> (dict, str):
     return expected, session.api_token
 
 
-class TestGetUser(MainTestCase):
+class TestGetUser(TestCaseImpl):
     def test_ユーザを取得(self) -> None:
         expected, api_token = get_user_from_db(self.db)
         self.client.set_cookie("localhost", "api_token", api_token)

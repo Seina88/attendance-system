@@ -1,7 +1,7 @@
 import json
 from uuid import UUID
 
-from tests.main_test_case import MainTestCase
+from tests.test_case_impl import TestCaseImpl
 
 from infrastructures.database import Database
 from infrastructures.user.user_dto import UserDto, UserSchema
@@ -14,7 +14,7 @@ def get_user_from_db(db: Database) -> (dict):
     return expected
 
 
-class TestCreateUser(MainTestCase):
+class TestCreateUser(TestCaseImpl):
     def test_nicknameを指定してセッションを生成(self) -> None:
         expected = get_user_from_db(self.db)
         request = {
