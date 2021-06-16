@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from container import container, Container
+
 from domains.session.session_repository import SessionRepository
 
 
@@ -14,3 +16,11 @@ class SessionService:
             return False
 
         return session.expire_at >= datetime.now()
+
+
+def builder(container: Container) -> SessionService:
+    session_repository = container.inject("SessionRepository")
+    return SessionService(session_repository)
+
+
+container.register("SessionService", builder)

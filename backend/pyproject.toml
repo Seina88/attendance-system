@@ -25,6 +25,8 @@ pytest = "^6.2.4"
 Faker = "^8.7.0"
 pykakasi = "^2.1.1"
 freezegun = "^1.1.0"
+injector = "^0.18.4"
+Flask-Injector = "^0.12.3"
 
 [tool.poetry.dev-dependencies]
 

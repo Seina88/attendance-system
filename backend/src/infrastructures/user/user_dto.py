@@ -4,10 +4,14 @@ from sqlalchemy_utils import UUIDType
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
 
+from container import container
+
 from domains.user.user import User
 
-from infrastructures.database import db
 from infrastructures.session.session_dto import SessionDto
+
+
+db = container.inject("Database")
 
 
 class UserDto(db.Model):

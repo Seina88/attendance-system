@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
+from container import container, Container
+
 
 class Database(SQLAlchemy):
     def __init__(self) -> None:
@@ -14,3 +16,10 @@ class Database(SQLAlchemy):
 
 
 db = Database()
+
+
+def builder(container: Container) -> Database:
+    return db
+
+
+container.register("Database", builder)

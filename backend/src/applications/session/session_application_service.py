@@ -1,6 +1,8 @@
 from typing import Union
 from uuid import UUID
 
+from container import container, Container
+
 from applications.error import Error
 from applications.session.create_session_request import CreateSessionRequest
 from applications.session.create_session_response import CreateSessionResponse
@@ -30,3 +32,12 @@ class SessionApplicationService:
             return CreateSessionResponse(200, user, session.api_token)
         else:
             return Error(401, "パスワードが間違っています。")
+
+
+def builder(container: Container) -> SessionApplicationService:
+    user_repository = container.inject("UserRepository")
+    session_repository = container.inject("SessionRepository")
+    return SessionApplicationService(user_repository, session_repository)
+
+
+container.register("SessionApplicationService", builder)

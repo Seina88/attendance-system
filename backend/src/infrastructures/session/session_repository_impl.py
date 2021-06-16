@@ -1,5 +1,7 @@
 from typing import Optional
 
+from container import container, Container
+
 from domains.session.session import Session
 from domains.session.session_repository import SessionRepository
 
@@ -33,3 +35,11 @@ class SessionRepositoryImpl(SessionRepository):
 
     def __domain_model_to_dto(self, session: Session) -> SessionDto:
         return SessionDto(id=session.id, user_id=session.user_id, api_token=session.api_token, expire_at=session.expire_at)
+
+
+def builder(container: Container) -> SessionRepository:
+    db = container.inject("Database")
+    return SessionRepositoryImpl(db)
+
+
+container.register("SessionRepository", builder)

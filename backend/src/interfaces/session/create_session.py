@@ -10,7 +10,8 @@ from applications.session.create_session_response import CreateSessionResponse
 
 class CreateSession(Resource):
     def __init__(self) -> None:
-        self.session_application_service = container.create_session_application_service()
+        self.session_application_service = container.inject(
+            "SessionApplicationService")
 
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument("info", required=True)

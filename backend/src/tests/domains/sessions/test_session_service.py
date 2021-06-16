@@ -11,14 +11,14 @@ from infrastructures.session.session_dto import SessionDto
 
 class TestSessionService(TestCaseImpl):
     def test_インスタンスの生成(self) -> None:
-        session_repository = container.create_session_repository()
+        session_repository = container.inject("SessionRepository")
         session_service = SessionService(session_repository)
         assert session_service.session_repository == session_repository
 
 
 class TestAuthnticated(TestCaseImpl):
     def test_api_tokenが存在しない場合Falseを返す(self) -> None:
-        session_service = container.create_session_service()
+        session_service = container.inject("SessionService")
         assert session_service.authenticated("") is False
 
     # def test_api_tokenが存在して期限切れの場合Falseを返す(self) -> None:
@@ -29,5 +29,5 @@ class TestAuthnticated(TestCaseImpl):
 
     def test_api_tokenが存在して期限切れでない場合Trueを返す(self) -> None:
         session = self.db.session.query(SessionDto).first()
-        session_service = container.create_session_service()
+        session_service = container.inject("SessionService")
         assert session_service.authenticated(session.api_token) is True

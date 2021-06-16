@@ -4,7 +4,10 @@ from sqlalchemy_utils import UUIDType
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
 
-from infrastructures.database import db
+from container import container
+
+
+db = container.inject("Database")
 
 
 class SessionDto(db.Model):

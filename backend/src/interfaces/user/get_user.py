@@ -8,7 +8,8 @@ from applications.user.get_user_response import GetUserResponse
 
 class GetUser(Resource):
     def __init__(self) -> None:
-        self.user_application_service = container.create_user_application_service()
+        self.user_application_service = container.inject(
+            "UserApplicationService")
 
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument(

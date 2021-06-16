@@ -1,6 +1,8 @@
 from typing import Union
 from uuid import UUID
 
+from container import container, Container
+
 from applications.error import Error
 from applications.user.get_user_request import GetUserRequest
 from applications.user.get_user_response import GetUserResponse
@@ -75,3 +77,14 @@ class UserApplicationService:
         self.user_repository.commit()
 
         return UpdateUserResponse(201, user)
+
+
+def builder(container: Container) -> UserApplicationService:
+    user_repository = container.inject("UserRepository")
+    session_repository = container.inject("SessionRepository")
+    user_service = container.inject("UserService")
+    session_service = container.inject("SessionService")
+    return UserApplicationService(user_repository, session_repository, user_service, session_service)
+
+
+container.register("UserApplicationService", builder)
