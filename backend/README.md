@@ -1,5 +1,9 @@
 # Backend
 
+## Architecture
+
+![alt](./images/architecture.png)
+
 ## How to Migrate
 
 プロジェクトルートで、
