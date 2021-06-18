@@ -11,7 +11,6 @@ from infrastructures.session.session_dto import SessionDto
 class SessionRepositoryImpl(SessionRepository):
     @inject
     def __init__(self, db: Database) -> None:
-        super().__init__()
         self.db = db
 
     def find_by_api_token(self, api_token: str) -> Optional[Session]:

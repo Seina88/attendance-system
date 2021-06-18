@@ -12,7 +12,6 @@ from infrastructures.user.user_dto import UserDto
 class UserRepositoryImpl(UserRepository):
     @inject
     def __init__(self, db: Database) -> None:
-        super().__init__()
         self.db = db
 
     def find_by_id(self, id: UUID) -> Optional[User]:
