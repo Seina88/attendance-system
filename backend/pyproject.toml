@@ -27,6 +27,7 @@ pykakasi = "^2.1.1"
 freezegun = "^1.1.0"
 injector = "^0.18.4"
 Flask-Injector = "^0.12.3"
+wait-for-it = "^2.2.0"
 
 [tool.poetry.dev-dependencies]
 

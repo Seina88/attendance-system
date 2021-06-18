@@ -14,7 +14,5 @@ jobs:
         run: make build
       - name: start the application on docker
         run: make start
-      - name: wait for booting the application
-        run: sleep 10s
       - name: run test on docker
         run: make backend-test
