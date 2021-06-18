@@ -1,12 +1,12 @@
 from uuid import UUID
-
-from container import container, Container
+from injector import inject
 
 from domains.user.user import User
 from domains.user.user_repository import UserRepository
 
 
 class UserService:
+    @inject
     def __init__(self, user_repository: UserRepository) -> None:
         self.user_repository = user_repository
 
@@ -31,11 +31,3 @@ class UserService:
             return True
 
         return user.id == id
-
-
-def builder(container: Container) -> UserService:
-    user_repository = container.inject("UserRepository")
-    return UserService(user_repository)
-
-
-container.register("UserService", builder)

@@ -1,7 +1,6 @@
 from typing import Optional
 from uuid import UUID
-
-from container import container, Container
+from injector import inject
 
 from domains.user.user import User
 from domains.user.user_repository import UserRepository
@@ -11,6 +10,7 @@ from infrastructures.user.user_dto import UserDto
 
 
 class UserRepositoryImpl(UserRepository):
+    @inject
     def __init__(self, db: Database) -> None:
         super().__init__()
         self.db = db
@@ -67,11 +67,3 @@ class UserRepositoryImpl(UserRepository):
 
     def __domain_model_to_dto(self, user: User) -> UserDto:
         return UserDto(id=user.id, nickname=user.nickname, first_name=user.first_name, last_name=user.last_name, email=user.email, password=user.password)
-
-
-def builder(container: Container) -> UserRepository:
-    db = container.inject("Database")
-    return UserRepositoryImpl(db)
-
-
-container.register("UserRepository", builder)

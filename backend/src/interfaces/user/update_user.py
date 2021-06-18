@@ -1,15 +1,15 @@
 from flask_restful import Resource, reqparse, abort
 
-from container import container
+from container import injector
 
 from applications.user.update_user_request import UpdateUserRequest
 from applications.user.update_user_response import UpdateUserResponse
+from applications.user.user_application_service import UserApplicationService
 
 
 class UpdateUser(Resource):
     def __init__(self) -> None:
-        self.user_application_service = container.inject(
-            "UserApplicationService")
+        self.user_application_service = injector.get(UserApplicationService)
 
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument(

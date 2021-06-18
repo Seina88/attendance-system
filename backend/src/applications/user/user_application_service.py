@@ -1,7 +1,6 @@
 from typing import Union
 from uuid import UUID
-
-from container import container, Container
+from injector import inject
 
 from applications.error import Error
 from applications.user.get_user_request import GetUserRequest
@@ -19,6 +18,7 @@ from domains.session.session_service import SessionService
 
 
 class UserApplicationService:
+    @inject
     def __init__(self, user_repository: UserRepository, session_repository: SessionRepository, user_service: UserService, session_service: SessionService) -> None:
         self.user_repository = user_repository
         self.user_service = user_service
@@ -77,14 +77,3 @@ class UserApplicationService:
         self.user_repository.commit()
 
         return UpdateUserResponse(201, user)
-
-
-def builder(container: Container) -> UserApplicationService:
-    user_repository = container.inject("UserRepository")
-    session_repository = container.inject("SessionRepository")
-    user_service = container.inject("UserService")
-    session_service = container.inject("SessionService")
-    return UserApplicationService(user_repository, session_repository, user_service, session_service)
-
-
-container.register("UserApplicationService", builder)

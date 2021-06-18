@@ -2,16 +2,17 @@ import os
 from datetime import datetime, timedelta
 from flask_restful import Resource, reqparse, abort
 
-from container import container
+from container import injector
 
 from applications.session.create_session_request import CreateSessionRequest
 from applications.session.create_session_response import CreateSessionResponse
+from applications.session.session_application_service import SessionApplicationService
 
 
 class CreateSession(Resource):
     def __init__(self) -> None:
-        self.session_application_service = container.inject(
-            "SessionApplicationService")
+        self.session_application_service = injector.get(
+            SessionApplicationService)
 
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument("info", required=True)

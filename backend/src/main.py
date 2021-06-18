@@ -2,9 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
 
-import driver
-from app import app
-from container import container
+from container import injector
 
 from configs.app_config import MainAppConfig
 from configs.database_config import MainDatabaseConfig
@@ -16,13 +14,14 @@ from infrastructures.session.session_dto import SessionDto
 from interfaces.router import Router
 
 
-def main(app: Flask, app_config: type, database_config: type) -> Flask:
-    CORS(app)
-
+def main(app_config: type, database_config: type) -> Flask:
+    app = injector.get(Flask)
     app.config.from_object(app_config)
     app.config.from_object(database_config)
 
-    db = container.inject("Database")
+    CORS(app)
+
+    db = injector.get(Database)
     db.initialize(app)
 
     api = Api(app)
@@ -31,4 +30,4 @@ def main(app: Flask, app_config: type, database_config: type) -> Flask:
     return app
 
 
-app = main(app, MainAppConfig, MainDatabaseConfig)
+app = main(MainAppConfig, MainDatabaseConfig)

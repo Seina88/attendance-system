@@ -5,9 +5,6 @@ from domains.session.session import Session
 
 
 class SessionRepository(ABC):
-    def __init__(self) -> None:
-        pass
-
     @abstractmethod
     def find_by_api_token(self, api_token: str) -> Optional[Session]:
         raise NotImplementedError

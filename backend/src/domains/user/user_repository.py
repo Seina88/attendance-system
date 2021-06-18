@@ -6,9 +6,6 @@ from domains.user.user import User
 
 
 class UserRepository(ABC):
-    def __init__(self) -> None:
-        pass
-
     @abstractmethod
     def find_by_id(self, id: UUID) -> Optional[User]:
         raise NotImplementedError
