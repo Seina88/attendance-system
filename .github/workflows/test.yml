@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
       - name: create .env
         run: cp .env.sample .env
       - name: build docker container
