@@ -8,11 +8,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-      - name: create .env
-        run: cp .env.test .env
       - name: build docker container
-        run: make build
+        run: docker-compose -f docker-compose.backend-test.yml build
       - name: start the application on docker
-        run: make start
+        run: docker-compose -f docker-compose.backend-test.yml up -d
+      - name: wait for database
+        run: docker-compose -f docker-compose.backend-test.yml run wait database:3306 -- echo "Database woke up."
       - name: run test on docker
-        run: make backend-test
+        run: docker-compose -f docker-compose.backend-test.yml exec -T backend pytest -vvv
