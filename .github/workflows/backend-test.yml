@@ -12,7 +12,9 @@ jobs:
         run: cp .env.test .env
       - name: build docker container
         run: make build
-      - name: start application on docker
+      - name: start the application on docker
         run: make start
+      - name: wait for booting the application
+        run: sleep 10s
       - name: run test on docker
         run: make backend-test
