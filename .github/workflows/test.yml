@@ -9,7 +9,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
       - name: create .env
-        run: cp .env.sample .env
+        run: cp .env.test .env
       - name: build docker container
         run: make build
       - name: start application on docker
