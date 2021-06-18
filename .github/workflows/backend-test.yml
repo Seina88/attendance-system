@@ -1,8 +1,8 @@
-name: test
+name: backend test
 on: [push]
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
@@ -14,5 +14,5 @@ jobs:
         run: make build
       - name: start application on docker
         run: make start
-      - name: run test
-        run: make test
+      - name: run test on docker
+        run: make backend-test
