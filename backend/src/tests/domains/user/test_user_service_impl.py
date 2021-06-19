@@ -4,14 +4,15 @@ from container import injector
 
 from domains.user.user_repository import UserRepository
 from domains.user.user_service import UserService
+from domains.user.user_service_impl import UserServiceImpl
 
 from infrastructures.user.user_dto import UserDto
 
 
-class TestUserService(TestCaseImpl):
+class TestUserServiceImpl(TestCaseImpl):
     def test_インスタンスの生成(self) -> None:
         user_repository = injector.get(UserRepository)
-        user_service = UserService(user_repository)
+        user_service = UserServiceImpl(user_repository)
         assert user_service.user_repository == user_repository
 
 

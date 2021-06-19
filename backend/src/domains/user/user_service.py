@@ -1,33 +1,23 @@
+from abc import ABC, abstractmethod
 from uuid import UUID
-from injector import inject
 
 from domains.user.user import User
 from domains.user.user_repository import UserRepository
 
 
-class UserService:
-    @inject
-    def __init__(self, user_repository: UserRepository) -> None:
-        self.user_repository = user_repository
-
+class UserService(ABC):
+    @abstractmethod
     def exists_with_nickname(self, nickname: str) -> bool:
-        return self.user_repository.find_by_nickname(nickname) is not None
+        raise NotImplementedError
 
+    @abstractmethod
     def exists_with_email(self, email: str) -> bool:
-        return self.user_repository.find_by_email(email) is not None
+        raise NotImplementedError
 
+    @abstractmethod
     def can_update_nickname(self, id: UUID, nickname: str) -> bool:
-        user = self.user_repository.find_by_nickname(nickname)
+        raise NotImplementedError
 
-        if user is None:
-            return True
-
-        return user.id == id
-
+    @abstractmethod
     def can_update_email(self, id: UUID, email: str) -> bool:
-        user = self.user_repository.find_by_email(email)
-
-        if user is None:
-            return True
-
-        return user.id == id
+        raise NotImplementedError

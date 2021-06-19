@@ -6,14 +6,15 @@ from container import injector
 
 from domains.session.session_repository import SessionRepository
 from domains.session.session_service import SessionService
+from domains.session.session_service_impl import SessionServiceImpl
 
 from infrastructures.session.session_dto import SessionDto
 
 
-class TestSessionService(TestCaseImpl):
+class TestSessionServiceImpl(TestCaseImpl):
     def test_インスタンスの生成(self) -> None:
         session_repository = injector.get(SessionRepository)
-        session_service = SessionService(session_repository)
+        session_service = SessionServiceImpl(session_repository)
         assert session_service.session_repository == session_repository
 
 
