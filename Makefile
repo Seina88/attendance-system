@@ -1,3 +1,6 @@
+#########
+# Local #
+#########
 .PHONY: install
 install: frontend-install backend-install
 
@@ -29,6 +32,9 @@ backend-start:
 	cd backend/src/; \
 	sh ../bin/start.sh
 
+##########
+# Docker #
+##########
 .PHONY: build
 build:
 	docker-compose build
@@ -67,3 +73,10 @@ nginx-attach:
 .PHONY: database-attach
 database-attach:
 	docker-compose exec database mysql -u root -p
+
+.PHONY: test
+test: backend-test
+
+.PHONY: backend-test
+backend-test:
+	docker-compose exec backend pytest -vvv

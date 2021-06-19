@@ -1,35 +1,31 @@
-from sqlalchemy_utils import UUIDType
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
+from sqlalchemy_utils import UUIDType
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
-from ..database import database as db
+
+from infrastructures.database import db
 
 
-ma = Marshmallow()
+class SessionDto(db.Model):
+    __tablename__ = "sessions"
 
-
-class UserModel(db.Model):
-    __tablename__ = "user"
     id = db.Column(UUIDType(binary=False),
                    primary_key=True, default=uuid.uuid4)
-    name = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    password = db.Column(db.String(255), nullable=False)
+    user_id = db.Column(UUIDType(binary=False),
+                        db.ForeignKey("users.id"), nullable=False)
+    api_token = db.Column(db.String(255), nullable=False, unique=True)
+    expire_at = db.Column(db.DateTime, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.now, onupdate=datetime.now)
 
-    def __init__(self, name, email, password):
-        self.name = name
-        self.email = email
-        self.password = password
 
-
-class UserSchema(ma.SQLAlchemyAutoSchema):
+class SessionSchema(Marshmallow().SQLAlchemyAutoSchema):
     class Meta:
-        model = UserModel
+        model = SessionDto
         load_instance = True
 
+    expire_at = fields.DateTime('%Y-%m-%dT%H:%M:%S')
     created_at = fields.DateTime('%Y-%m-%dT%H:%M:%S')
     updated_at = fields.DateTime('%Y-%m-%dT%H:%M:%S')

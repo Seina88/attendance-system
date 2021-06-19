@@ -19,6 +19,15 @@ marshmallow-sqlalchemy = "^0.26.0"
 PyMySQL = "^1.0.2"
 SQLAlchemy-Utils = "^0.37.4"
 cryptography = "^3.4.7"
+Flask-Session = "^0.3.2"
+Flask-Testing = "^0.8.1"
+pytest = "^6.2.4"
+Faker = "^8.7.0"
+pykakasi = "^2.1.1"
+freezegun = "^1.1.0"
+injector = "^0.18.4"
+Flask-Injector = "^0.12.3"
+wait-for-it = "^2.2.0"
 
 [tool.poetry.dev-dependencies]
 

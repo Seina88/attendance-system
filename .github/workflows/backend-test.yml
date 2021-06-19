@@ -1,0 +1,18 @@
+name: backend test
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: build docker container
+        run: docker-compose -f docker-compose.backend-test.yml build
+      - name: start the application on docker
+        run: docker-compose -f docker-compose.backend-test.yml up -d
+      - name: wait for database
+        run: docker-compose -f docker-compose.backend-test.yml run wait database:3306 -- echo "Database woke up."
+      - name: run test on docker
+        run: docker-compose -f docker-compose.backend-test.yml exec -T backend pytest -vvv
