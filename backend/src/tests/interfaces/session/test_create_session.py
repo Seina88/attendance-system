@@ -7,7 +7,7 @@ from infrastructures.database import Database
 from infrastructures.user.user_dto import UserDto, UserSchema
 
 
-def get_user_from_db(db: Database) -> (dict):
+def get_user_from_db(db: Database) -> dict:
     user = db.session.query(UserDto).first()
     expected = UserSchema().dump(user)
     del expected["created_at"], expected["updated_at"]

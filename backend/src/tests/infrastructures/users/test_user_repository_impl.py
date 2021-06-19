@@ -95,25 +95,6 @@ class TestFindByEmail(TestCaseImpl):
         assert user is None
 
 
-class TestFindByEmail(TestCaseImpl):
-    def test_存在するユーザのemailを指定するとUser型のインスタンスが返される(self) -> None:
-        expected = self.db.session.query(UserDto).first()
-        user_repository = injector.get(UserRepository)
-        user = user_repository.find_by_email(expected.email)
-        assert isinstance(user, User)
-        assert user.id == expected.id
-        assert user.nickname == expected.nickname
-        assert user.first_name == expected.first_name
-        assert user.last_name == expected.last_name
-        assert user.email == expected.email
-        assert user.password == expected.password
-
-    def test_存在しないユーザのemailを指定するとNoneが返される(self) -> None:
-        user_repository = injector.get(UserRepository)
-        user = user_repository.find_by_email("email")
-        assert user is None
-
-
 class TestFindByInfo(TestCaseImpl):
     def test_存在するユーザのnicknameを指定するとUser型のインスタンスが返される(self) -> None:
         expected = self.db.session.query(UserDto).first()
