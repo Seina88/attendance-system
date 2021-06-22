@@ -43,7 +43,7 @@ class TestAdd(TestCaseImpl):
         prev_count = self.db.session.query(SessionDto).count()
         user = self.db.session.query(UserDto).first()
         session_repository = injector.get(SessionRepository)
-        session = Session(None, user.id)
+        session = Session.Builder().user_id(user.id).build()
         session_repository.add(session)
         session_repository.commit()
         assert self.db.session.query(SessionDto).count() == prev_count + 1

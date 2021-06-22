@@ -34,7 +34,8 @@ def create_users(num_users: int) -> list[UserDto]:
             0]["passport"], randint(0, 2 ** 10))
         email = nickname + "@example.com"
         password = md5(nickname.encode("utf-8")).hexdigest()
-        user = User(None, nickname, first_name, last_name, email, password)
+        user = User.Builder().nickname(nickname).first_name(first_name).last_name(
+            last_name).email(email).password(password).build()
         users.append(UserDto(id=user.id, nickname=user.nickname, first_name=user.first_name,
                              last_name=user.last_name, email=user.email, password=user.password))
     return users
@@ -45,7 +46,7 @@ def create_sessions(num_sessions: int, users: list[UserDto]) -> list[SessionDto]
     for i in range(num_sessions):
         user_id = users[i].id
         expire_at = datetime.now() + timedelta(days=10)
-        session = Session(None, user_id, expire_at=expire_at)
+        session = Session.Builder().user_id(user_id).expire_at(expire_at).build()
         sessions.append(SessionDto(
             id=session.id, user_id=session.user_id, api_token=session.api_token, expire_at=session.expire_at))
     return sessions

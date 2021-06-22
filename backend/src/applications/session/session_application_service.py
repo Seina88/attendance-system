@@ -24,7 +24,7 @@ class SessionApplicationService:
             return Error(404, "ニックネームまたはメールアドレスが間違っています。")
 
         if user.password == request.password:
-            session = Session(None, user.id)
+            session = Session.Builder().user_id(user.id).build()
 
             self.session_repository.add(session)
             self.session_repository.commit()

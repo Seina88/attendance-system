@@ -62,7 +62,7 @@ class UserRepositoryImpl(UserRepository):
         self.db.session.commit()
 
     def __dto_to_domain_model(self, user_dto: UserDto) -> User:
-        return User(user_dto.id, user_dto.nickname, user_dto.first_name, user_dto.last_name, user_dto.email, user_dto.password)
+        return User.Builder().id(user_dto.id).nickname(user_dto.nickname).first_name(user_dto.first_name).last_name(user_dto.last_name).email(user_dto.email).password(user_dto.password).build()
 
     def __domain_model_to_dto(self, user: User) -> UserDto:
         return UserDto(id=user.id, nickname=user.nickname, first_name=user.first_name, last_name=user.last_name, email=user.email, password=user.password)

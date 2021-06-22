@@ -37,8 +37,8 @@ class UserApplicationService:
         return GetUserResponse(200, user)
 
     def create(self, request: CreateUserRequest) -> Union[CreateUserResponse, Error]:
-        user = User(None, request.nickname, request.first_name,
-                    request.last_name, request.email, request.password)
+        user = User.Builder().nickname(request.nickname).first_name(request.first_name).last_name(
+            request.last_name).email(request.email).password(request.password).build()
 
         if self.user_service.exists_with_nickname(user.nickname):
             return Error(409, "そのニックネームはすでに使用されています。")
@@ -61,8 +61,8 @@ class UserApplicationService:
         if str(user.id) != request.id:
             return Error(403, "ユーザーが一致しません。")
 
-        new_user = User(None, request.nickname, request.first_name,
-                        request.last_name, request.email, request.password)
+        new_user = User.Builder().nickname(request.nickname).first_name(request.first_name).last_name(
+            request.last_name).email(request.email).password(request.password).build()
 
         if not self.user_service.can_update_nickname(UUID(request.id), new_user.nickname):
             return Error(409, "そのニックネームはすでに使用されています。")

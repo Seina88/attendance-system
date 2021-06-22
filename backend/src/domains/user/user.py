@@ -1,6 +1,9 @@
 from uuid import UUID, uuid4
 
+from libraries.builder import builder
 
+
+@builder("id", "nickname", "first_name", "last_name", "email", "password")
 class User:
     def __init__(self, id: UUID, nickname: str, first_name: str, last_name: str, email: str, password: str) -> None:
         self.id = id or uuid4()
