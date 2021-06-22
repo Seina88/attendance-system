@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Any
 
 
 def builder(*attributes: list) -> Callable[type, type]:
@@ -10,8 +10,8 @@ def builder(*attributes: list) -> Callable[type, type]:
                     self.kwargs[attribute] = None
                     setattr(self, attribute, self.generate_setter(attribute))
 
-            def generate_setter(self, key: str) -> Callable[str, "Builder"]:
-                def set_value(value: str) -> "Builder":
+            def generate_setter(self, key: str) -> Callable[Any, "Builder"]:
+                def set_value(value: Any) -> "Builder":
                     self.kwargs[key] = value
                     return self
                 return set_value
