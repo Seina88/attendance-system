@@ -30,7 +30,7 @@ class SessionRepositoryImpl(SessionRepository):
         self.db.session.commit()
 
     def __dto_to_domain_model(self, session_dto: SessionDto) -> Session:
-        return Session(session_dto.id, session_dto.user_id, session_dto.api_token)
+        return Session.Builder().id(session_dto.id).user_id(session_dto.user_id).api_token(session_dto.api_token).build()
 
     def __domain_model_to_dto(self, session: Session) -> SessionDto:
         return SessionDto(id=session.id, user_id=session.user_id, api_token=session.api_token, expire_at=session.expire_at)

@@ -130,8 +130,8 @@ class TestAdd(TestCaseImpl):
     def test_ユーザを追加(self) -> None:
         prev_count = self.db.session.query(UserDto).count()
         user_repository = injector.get(UserRepository)
-        user = User(None, "nickname", "first_name", "last_name",
-                    "email@example.com", "password")
+        user = User.Builder().nickname("nickname").first_name("first_name").last_name("last_name").email(
+            "email@example.com").password("password").build()
         user_repository.add(user)
         user_repository.commit()
         assert self.db.session.query(UserDto).count() == prev_count + 1

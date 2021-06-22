@@ -3,9 +3,12 @@ import random
 import string
 from datetime import datetime, timedelta
 
+from libraries.builder import builder
 
+
+@builder("id", "user_id", "api_token", "expire_at")
 class Session:
-    def __init__(self, id: UUID, user_id: UUID, api_token: str = None, expire_at: datetime = None) -> None:
+    def __init__(self, id: UUID, user_id: UUID, api_token: str, expire_at: datetime) -> None:
         self.id = id or uuid4()
         self.user_id = user_id
         self.api_token = api_token or self.__create_api_token()
