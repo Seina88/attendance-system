@@ -1,6 +1,6 @@
-#########
-# Local #
-#########
+#############
+### Local ###
+#############
 .PHONY: install
 install: frontend-install backend-install
 
@@ -23,7 +23,7 @@ frontend-build:
 	cd -
 
 .PHONY: frontend-start
-frontend-start:
+frontend-start: frontend-build
 	cd frontend/; \
 	yarn run start
 
@@ -32,9 +32,9 @@ backend-start:
 	cd backend/src/; \
 	sh ../bin/start.sh
 
-##########
-# Docker #
-##########
+##############
+### Docker ###
+##############
 .PHONY: build
 build:
 	docker-compose build
@@ -44,7 +44,7 @@ no-cache-build:
 	docker-compose build --no-cache
 
 .PHONY: start
-start:
+start: build
 	docker-compose up -d
 
 .PHONY: stop
@@ -59,24 +59,24 @@ clean:
 restart: stop build start
 
 .PHONY: frontend-attach
-frontend-attach:
+frontend-attach: start
 	docker-compose exec frontend bash
 
 .PHONY: backend-attach
-backend-attach:
+backend-attach: start
 	docker-compose exec backend bash
 
 .PHONY: nginx-attach
-nginx-attach:
+nginx-attach: start
 	docker-compose exec nginx bash
 
 .PHONY: database-attach
-database-attach:
+database-attach: start
 	docker-compose exec database mysql -u root -p
 
 .PHONY: test
 test: backend-test
 
 .PHONY: backend-test
-backend-test:
+backend-test: start
 	docker-compose exec backend pytest -vvv

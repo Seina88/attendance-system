@@ -306,6 +306,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "instance-builder"
+version = "0.1.2"
+description = "Instance builder library for Python inspired by Lombok"
+category = "main"
+optional = false
+python-versions = ">=3.9,<4.0"
+
+[[package]]
 name = "itsdangerous"
 version = "2.0.1"
 description = "Safely pass data to untrusted environments and back."
@@ -650,7 +658,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "a81bb8fb107fc504e916e1ba24455f3a37eae0fd2d69a3d5fc1cb6efc97ddfa4"
+content-hash = "7d256fec96bb64a541b78ef94ea716d580bb8ca80327bfb91844e7942d57b9cd"
 
 [metadata.files]
 alembic = [
@@ -855,6 +863,10 @@ iniconfig = [
 injector = [
     {file = "injector-0.18.4-py2.py3-none-any.whl", hash = "sha256:9e6e7e63050630b2fc3fe1472bdc7ae5f98ca0242ca8506f562f3d9836170f91"},
     {file = "injector-0.18.4.tar.gz", hash = "sha256:ced88ee14183b9f95b2cb6cdb17bf7382499fad187dee0dace6891874ae4b182"},
+]
+instance-builder = [
+    {file = "instance-builder-0.1.2.tar.gz", hash = "sha256:2762956d30249d9ae4931a47bdae95c1879aa1e195002de2d14ef64cb62eda5d"},
+    {file = "instance_builder-0.1.2-py3-none-any.whl", hash = "sha256:5b772b1c7bc37037dcdc4dc018ee23b5b2e4cc4eac9c7bcc8f64b31f9cbdd80a"},
 ]
 itsdangerous = [
     {file = "itsdangerous-2.0.1-py3-none-any.whl", hash = "sha256:5174094b9637652bdb841a3029700391451bd092ba3db90600dea710ba28e97c"},
