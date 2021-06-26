@@ -1,70 +1,71 @@
 <template>
-    <div class="login">
-      <div class="card">
-        <header class="login_header">
-          <h2>
-            Sign In
-          </h2>
-        </header>
-        <div class="content">
-          <form class="login_form">
-            <div class="login_info">
-              <label for="info">User Name / Email</label>
-                <input
-                  type="text"
-                  name="info"
-                  placeholder="UserName / Email"
-                  id="info"
-                  v-model="info"
-                  required
-                >
-            </div>
-            <div class="login_password">
-              <label for="password">Password</label>
-                <input
-                  :type="showPassword ? 'text' : 'password'"
-                  name="password"
-                  class="input-password"
-                  placeholder="password"
-                  id="password"
-                  v-model="password"
-                  required
-                >
-                <span class="eye-icon">
-                  <img :src="eyeImage" @click="showPassword = !showPassword">
-                </span>
-            </div>
-            <div class="submit">
-              <input class="button" type="submit" value="Sign In">
-            </div>
-            <div class="create_user">
-              <button class="button" type="create_user" @click="createUser">Create User</button>
-            </div>
-          </form>
-        </div>
+  <div class="login">
+    <div class="card">
+      <header class="login_header">
+        <h2>Sign In</h2>
+      </header>
+      <div class="content">
+        <form class="login_form">
+          <div class="login_info">
+            <label for="info">User Name / Email</label>
+            <input
+              type="text"
+              name="info"
+              placeholder="UserName / Email"
+              id="info"
+              v-model="info"
+              required
+            />
+          </div>
+          <div class="login_password">
+            <label for="password">Password</label>
+            <input
+              :type="showPassword ? 'text' : 'password'"
+              name="password"
+              class="input-password"
+              placeholder="password"
+              id="password"
+              v-model="password"
+              required
+            />
+            <span class="eye-icon">
+              <img :src="eyeImage" @click="showPassword = !showPassword" />
+            </span>
+          </div>
+          <div class="submit">
+            <input class="button" type="submit" value="Sign In" />
+          </div>
+          <div class="create_user">
+            <button class="button" type="create_user" @click="createUser">
+              Create User
+            </button>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
-import eyeOpenImage from '@/assets/img/eye.png'
-import eyeCloseImage from '@/assets/img/eye-off.png'
+import eyeOpenImage from '@/assets/img/eye-open.png'
+import eyeCloseImage from '@/assets/img/eye-close.png'
 
 export default {
   name: 'Login',
-  data: function () {
+  data () {
     return {
       info: '',
-      password: ''
+      password: '',
+      showPassword: false
     }
   },
   computed: {
-    eyeImage: function () {
+    eyeImage () {
       return this.showPassword ? eyeCloseImage : eyeOpenImage
     }
   },
   methods: {
-    createUser: function () {
+    createUser () {
       this.$router.push('/register')
     }
   }
@@ -72,7 +73,7 @@ export default {
 </script>
 
 <style scoped>
-.input-password{
+.input-password {
   display: inline;
   padding-right: 30px;
 }
@@ -119,8 +120,8 @@ h2 {
   top: 34px;
   cursor: pointer;
 }
-.login input[type="password"],
-.login input[type="text"] {
+.login input[type='password'],
+.login input[type='text'] {
   background-color: #eee;
   color: #777;
   padding: 4px;
@@ -128,8 +129,8 @@ h2 {
   font-size: 16px;
   height: 32px;
 }
-.login input[type="password"]::placeholder,
-.login input[type="text"]::placeholder {
+.login input[type='password']::placeholder,
+.login input[type='text']::placeholder {
   color: #c0c0c0;
 }
 .submit {
@@ -145,7 +146,7 @@ input {
 }
 
 /* ---------- BUTTON ---------- */
-.button[type="submit"] {
+.button[type='submit'] {
   background-color: #bbded6;
   color: #fff;
   padding: 0.25em 1.5em;
@@ -153,11 +154,11 @@ input {
   margin: 0 auto;
   width: 100%;
 }
-.button:focus[type="submit"],
-.button:hover[type="submit"] {
+.button:focus[type='submit'],
+.button:hover[type='submit'] {
   background-color: #61c0bf;
 }
-.button[type="create_user"] {
+.button[type='create_user'] {
   color: #c0c0c0;
   background: #fff;
   border: 0.05px solid;
@@ -165,10 +166,10 @@ input {
   padding: 0.25em 1.5em;
   display: block;
   margin: 32px auto;
-  text-align:center;
+  text-align: center;
 }
-.button:focus[type="create_user"],
-.button:hover[type="create_user"] {
+.button:focus[type='create_user'],
+.button:hover[type='create_user'] {
   color: #8a8787;
 }
 </style>

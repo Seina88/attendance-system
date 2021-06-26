@@ -15,6 +15,12 @@
    cp .env.sample .env
    ```
 
+3. Visual Studio Code の設定
+
+   ```sh
+   cp ./.vscode/settings.sample.json ./.vscode/settings.json
+   ```
+
 ## サーバの起動
 
 ### Docker
