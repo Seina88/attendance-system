@@ -1,18 +1,21 @@
-name: backend test
+name: Backend Test
+
 on: [push]
+
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        docker-compose-yml: [docker-compose.backend-test.yml]
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
-      - name: build docker container
-        run: docker-compose -f docker-compose.backend-test.yml build
-      - name: start the application on docker
-        run: docker-compose -f docker-compose.backend-test.yml up -d
-      - name: wait for database
-        run: docker-compose -f docker-compose.backend-test.yml run wait database:3306 -- echo "Database woke up."
-      - name: run test on docker
-        run: docker-compose -f docker-compose.backend-test.yml exec -T backend pytest -vvv
+      - uses: actions/checkout@v2
+      - name: Build docker container
+        run: docker-compose -f ${{ matrix.docker-compose-yml }} build
+      - name: Start the application on docker
+        run: docker-compose -f ${{ matrix.docker-compose-yml }} up -d
+      - name: Wait for database
+        run: docker-compose -f ${{ matrix.docker-compose-yml }} run wait database:3306 -- echo "Database woke up."
+      - name: Run test on docker
+        run: docker-compose -f ${{ matrix.docker-compose-yml }} exec -T backend pytest -vvv
