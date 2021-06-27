@@ -1,5 +1,5 @@
 import { User } from './user'
 
-export type UserRepository = {
+export type UserDriver = {
   create: (user: User) => User
 }
