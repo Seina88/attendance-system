@@ -1,5 +1,7 @@
 # 勤怠管理システム
 
+![Backend Test](https://github.com/Seina88/attendance-system/actions/workflows/backend-test.yml/badge.svg)
+
 ## 環境構築
 
 1. リポジトリのクローン
