@@ -14,7 +14,7 @@ def get_user_from_db(db: Database) -> dict:
     return expected
 
 
-class TestCreateUser(TestCaseImpl):
+class TestCreateSession(TestCaseImpl):
     def test_nicknameを指定してセッションを生成(self) -> None:
         expected = get_user_from_db(self.db)
         request = {
