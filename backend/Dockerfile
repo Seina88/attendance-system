@@ -6,7 +6,7 @@ RUN pip install poetry
 
 ADD pyproject.toml poetry.lock ./
 
-RUN poetry export -f requirements.txt > requirements.txt
+RUN poetry export -f requirements.txt -o requirements.txt --dev
 
 FROM python:3.9.4
 
