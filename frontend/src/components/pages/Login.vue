@@ -36,8 +36,8 @@
             <input class="button" type="submit" value="Sign In" />
           </div>
           <div class="create_user">
-            <button class="button" type="create_user" @click="createUser">
-              Create User
+            <button class="button" type="create_user" @click="moveToRegister">
+              Create New User
             </button>
           </div>
         </form>
@@ -65,7 +65,7 @@ export default {
     }
   },
   methods: {
-    createUser () {
+    moveToRegister () {
       this.$router.push('/register')
     }
   }
@@ -144,8 +144,6 @@ input {
   padding: 0;
   transition: all 0.3s;
 }
-
-/* ---------- BUTTON ---------- */
 .button[type='submit'] {
   background-color: #bbded6;
   color: #fff;
