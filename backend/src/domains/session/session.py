@@ -2,8 +2,7 @@ from uuid import UUID, uuid4
 import random
 import string
 from datetime import datetime, timedelta
-
-from libraries.builder import builder
+from instance_builder import builder
 
 
 @builder("id", "user_id", "api_token", "expire_at")

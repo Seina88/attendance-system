@@ -1,6 +1,5 @@
 from uuid import UUID, uuid4
-
-from libraries.builder import builder
+from instance_builder import builder
 
 
 @builder("id", "nickname", "first_name", "last_name", "email", "password")

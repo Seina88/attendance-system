@@ -28,6 +28,7 @@ freezegun = "^1.1.0"
 injector = "^0.18.4"
 Flask-Injector = "^0.12.3"
 wait-for-it = "^2.2.0"
+instance-builder = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 
