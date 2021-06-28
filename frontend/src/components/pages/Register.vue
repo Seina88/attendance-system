@@ -14,7 +14,7 @@
                 name="user_name"
                 placeholder="User Name"
                 id="user_name"
-                v-model="userName"
+                v-model="nickname"
                 required
               />
             </dd>
@@ -43,7 +43,7 @@
             <dt class="mail_address">Mail Address</dt>
             <dd>
               <input
-                type="text"
+                type="email"
                 name="mail_address"
                 placeholder="Mail Address"
                 id="mail_address"
@@ -51,10 +51,10 @@
                 required
               />
             </dd>
-            <dt class="pssword">Password</dt>
+            <dt class="password">Password</dt>
             <dd>
               <input
-                type="text"
+                type="password"
                 name="password"
                 placeholder="Password"
                 id="password"
@@ -77,7 +77,7 @@ export default {
   name: 'Register',
   data () {
     return {
-      userName: '',
+      nickname: '',
       firstName: '',
       lastName: '',
       email: '',
