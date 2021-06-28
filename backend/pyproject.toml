@@ -7,7 +7,6 @@ authors = ["Seina Tohyama <tiara818seina@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 Flask = "^2.0.0"
-autopep8 = "^1.5.7"
 python-dotenv = "^0.17.1"
 Flask-Cors = "^3.0.10"
 Flask-RESTful = "^0.3.9"
@@ -20,17 +19,18 @@ PyMySQL = "^1.0.2"
 SQLAlchemy-Utils = "^0.37.4"
 cryptography = "^3.4.7"
 Flask-Session = "^0.3.2"
-Flask-Testing = "^0.8.1"
+injector = "^0.18.4"
+Flask-Injector = "^0.12.3"
+instance-builder = "^0.1.2"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.7"
+wait-for-it = "^2.2.0"
 pytest = "^6.2.4"
 Faker = "^8.7.0"
 pykakasi = "^2.1.1"
 freezegun = "^1.1.0"
-injector = "^0.18.4"
-Flask-Injector = "^0.12.3"
-wait-for-it = "^2.2.0"
-instance-builder = "^0.1.2"
-
-[tool.poetry.dev-dependencies]
+Flask-Testing = "^0.8.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
