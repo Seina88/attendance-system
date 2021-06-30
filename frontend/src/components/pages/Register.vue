@@ -43,7 +43,7 @@
             <dt class="mail_address">Mail Address</dt>
             <dd>
               <input
-                type="email"
+                type="text"
                 name="mail_address"
                 placeholder="Mail Address"
                 id="mail_address"
@@ -54,7 +54,7 @@
             <dt class="password">Password</dt>
             <dd>
               <input
-                type="password"
+                type="text"
                 name="password"
                 placeholder="Password"
                 id="password"
@@ -139,6 +139,11 @@ form dl dd input {
 }
 input::placeholder {
   color: #c0c0c0;
+}
+.register_form input[type=text] {
+  background-color: #eee;
+  color: #777;
+  border: none;
 }
 .button {
   display: block;
