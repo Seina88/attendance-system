@@ -43,7 +43,7 @@
             <dt class="mail_address">Mail Address</dt>
             <dd>
               <input
-                type="text"
+                type="email"
                 name="mail_address"
                 placeholder="Mail Address"
                 id="mail_address"
@@ -52,15 +52,18 @@
               />
             </dd>
             <dt class="password">Password</dt>
-            <dd>
+            <dd class="input-password">
               <input
-                type="text"
+                :type="showPassword ? 'text' : 'password'"
                 name="password"
                 placeholder="Password"
                 id="password"
                 v-model="password"
                 required
               />
+              <span class="eye-icon">
+                <img :src="eyeImage" @click="showPassword = !showPassword" />
+              </span>
             </dd>
           </dl>
           <div class="submit">
@@ -73,6 +76,9 @@
 </template>
 
 <script>
+import eyeOpenImage from '@/assets/img/eye-open.png'
+import eyeCloseImage from '@/assets/img/eye-close.png'
+
 export default {
   name: 'Register',
   data () {
@@ -81,7 +87,13 @@ export default {
       firstName: '',
       lastName: '',
       email: '',
-      password: ''
+      password: '',
+      showPassword: false
+    }
+  },
+  computed: {
+    eyeImage () {
+      return this.showPassword ? eyeCloseImage : eyeOpenImage
     }
   }
 }
@@ -140,10 +152,21 @@ form dl dd input {
 input::placeholder {
   color: #c0c0c0;
 }
-.register_form input[type=text] {
+.register_form input[type=text],
+.register_form input[type=email],
+.register_form input[type=password] {
   background-color: #eee;
   color: #777;
   border: none;
+}
+.input-password {
+  position: relative;
+}
+.eye-icon {
+  position: absolute;
+  right:22px;
+  bottom: 2px;
+  cursor: pointer;
 }
 .button {
   display: block;
